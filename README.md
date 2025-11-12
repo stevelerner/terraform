@@ -62,27 +62,7 @@ make help
 
 This demo provisions a complete web application stack:
 
-```
-┌─────────────────────────────────────────────────┐
-│  Docker Desktop for Mac                         │
-│                                                  │
-│  ┌────────────────────────────────────────────┐ │
-│  │  Custom Bridge Network (172.20.0.0/16)    │ │
-│  │                                            │ │
-│  │  ┌──────────┐  ┌───────────┐  ┌─────────┐│ │
-│  │  │  Nginx   │→ │  Flask    │→ │ Postgres││ │
-│  │  │  :80     │  │  App      │  │ :5432   ││ │
-│  │  │          │  │  :5000    │  │         ││ │
-│  │  └────┬─────┘  └───────────┘  └────┬────┘│ │
-│  │       │                             │     │ │
-│  └───────┼─────────────────────────────┼─────┘ │
-│          │                             │       │
-│     Port 8080                    Volume Mount  │
-│          │                             │       │
-└──────────┼─────────────────────────────┼───────┘
-           │                             │
-     [localhost:8080]            [Persistent Data]
-```
+![Architecture Diagram](docs/architecture.svg)
 
 ## Components
 
