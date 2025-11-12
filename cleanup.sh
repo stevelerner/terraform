@@ -41,11 +41,32 @@ echo "Destroying infrastructure..."
 terraform destroy $AUTO_APPROVE
 
 echo ""
+echo "Cleaning up Terraform files..."
+
+# Remove Terraform lock file
+if [ -f ".terraform.lock.hcl" ]; then
+    rm -f .terraform.lock.hcl
+    echo "[OK] Removed .terraform.lock.hcl"
+fi
+
+# Remove .terraform directory
+if [ -d ".terraform" ]; then
+    rm -rf .terraform
+    echo "[OK] Removed .terraform directory"
+fi
+
+# Remove state backup files
+if [ -f "terraform.tfstate.backup" ]; then
+    rm -f terraform.tfstate.backup
+    echo "[OK] Removed terraform.tfstate.backup"
+fi
+
+echo ""
 echo "========================================"
 echo "Cleanup Complete!"
 echo "========================================"
 echo ""
-echo "All containers, networks, and volumes have been removed."
+echo "All containers, networks, volumes, and Terraform files have been removed."
 echo ""
 echo "To deploy again, run: ./start.sh"
 echo ""

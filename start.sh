@@ -3,8 +3,6 @@
 # Simple start script for Terraform + Docker demo
 # This script will initialize and deploy the entire stack
 
-set -e
-
 echo "========================================"
 echo "Terraform + Docker Demo - Start Script"
 echo "========================================"
@@ -14,7 +12,13 @@ echo ""
 echo "Checking prerequisites..."
 if ! docker ps &> /dev/null; then
     echo "[ERROR] Docker is not running. Please start Docker Desktop for Mac."
-    exit 1
+    echo ""
+    echo "To start Docker:"
+    echo "  1. Open Docker Desktop application"
+    echo "  2. Wait for it to finish starting"
+    echo "  3. Run this script again"
+    echo ""
+    return 1 2>/dev/null || exit 1
 fi
 
 if ! command -v terraform &> /dev/null; then
